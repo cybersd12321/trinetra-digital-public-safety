@@ -114,8 +114,6 @@ No API keys required for the Phase II demo — all intelligence engines run loca
 6. **Geospatial** — rank Bengaluru / Indore hotspots → patrol priority  
 7. **Citizen Shield** — paste scam text → verdict + 1930 guidance  
 
-See [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) for a full narrator script.
-
 ---
 
 ## Evaluation alignment (PS-6)
@@ -145,7 +143,6 @@ trinetra/
 │       ├── types.ts
 │       └── utils.ts
 ├── docs/
-│   ├── DEMO_SCRIPT.md
 │   └── ARCHITECTURE.md
 ├── presentation/             # Pitch deck (PPT)
 └── README.md

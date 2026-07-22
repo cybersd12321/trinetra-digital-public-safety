@@ -13,7 +13,7 @@
 |---|-------------|--------|----------|
 | 1 | **Working Prototype** (public GitHub + README) | ✅ Ready | This repo (`trinetra/`) |
 | 2 | **PPT** — Problem, solution, architecture, impact | ✅ Ready | `presentation/TRINETRA_ET_Hackathon_2026.pptx` |
-| 3 | **Demo Video** 3–4 min walkthrough | ⏳ You record | Script: `docs/DEMO_SCRIPT.md` |
+| 3 | **Demo Video** 3–4 min walkthrough | ⏳ You record | Record your own walkthrough |
 
 ---
 
@@ -48,9 +48,8 @@ Ensure the repo is **Public**. README already documents setup, architecture, and
 ### 3. Record the demo video (3–4 min)
 
 1. Open the app at fullscreen 1080p.  
-2. Follow `docs/DEMO_SCRIPT.md` section by section.  
-3. Suggested order: Landing → Dashboard → Scam Detector (critical + safe) → Currency Agent → Network → Geospatial → Citizen Shield → close.  
-4. Export MP4; upload to **YouTube (unlisted)** or Google Drive; copy the link.
+2. Suggested order: Landing → Dashboard → Scam Detector (critical + safe) → Currency Agent → Network → Geospatial → Citizen Shield → close.  
+3. Export MP4; upload to **YouTube (unlisted)** or Google Drive; copy the link.
 
 ### 4. Unstop upload
 
