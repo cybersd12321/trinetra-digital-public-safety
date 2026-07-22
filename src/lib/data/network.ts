@@ -1,0 +1,79 @@
+import { FraudCluster, GraphEdge, GraphNode } from "../types";
+
+export const graphNodes: GraphNode[] = [
+  { id: "c1", label: "Compound Alpha", type: "compound", risk: 96, meta: "Cross-border VoIP hub" },
+  { id: "s1", label: "Op Handler R.", type: "scammer", risk: 94, meta: "Script lead" },
+  { id: "s2", label: "Caller Unit-7", type: "scammer", risk: 88, meta: "CBI impersonation" },
+  { id: "s3", label: "Caller Unit-12", type: "scammer", risk: 85, meta: "Customs script" },
+  { id: "n1", label: "+91-98XXX-4412", type: "number", risk: 91, meta: "Spoofed CBI line" },
+  { id: "n2", label: "+91-80XXX-2291", type: "number", risk: 87, meta: "Spoofed ED line" },
+  { id: "d1", label: "Device A12", type: "device", risk: 82, meta: "IMEI cluster" },
+  { id: "d2", label: "Device B07", type: "device", risk: 79, meta: "Shared fingerprint" },
+  { id: "a1", label: "UPI mule · Priya K", type: "mule", risk: 84, meta: "Layer-1 funnel" },
+  { id: "a2", label: "UPI mule · Arjun M", type: "mule", risk: 81, meta: "Layer-1 funnel" },
+  { id: "a3", label: "A/c · Shell Trade", type: "account", risk: 90, meta: "Layer-2 aggregation" },
+  { id: "a4", label: "Crypto off-ramp", type: "account", risk: 93, meta: "Exit node" },
+  { id: "v1", label: "Victim · Bengaluru", type: "victim", risk: 40, meta: "₹12.5L attempted" },
+  { id: "v2", label: "Victim · Pune", type: "victim", risk: 55, meta: "₹22L attempted" },
+  { id: "v3", label: "Victim · Delhi", type: "victim", risk: 35, meta: "₹4.2L attempted" },
+  { id: "v4", label: "Victim · Hyderabad", type: "victim", risk: 30, meta: "Blocked early" },
+];
+
+export const graphEdges: GraphEdge[] = [
+  { id: "e1", source: "c1", target: "s1", relation: "commands", weight: 0.95 },
+  { id: "e2", source: "s1", target: "s2", relation: "assigns", weight: 0.9 },
+  { id: "e3", source: "s1", target: "s3", relation: "assigns", weight: 0.88 },
+  { id: "e4", source: "s2", target: "n1", relation: "spoofs", weight: 0.97 },
+  { id: "e5", source: "s3", target: "n2", relation: "spoofs", weight: 0.94 },
+  { id: "e6", source: "s2", target: "d1", relation: "uses", weight: 0.8 },
+  { id: "e7", source: "s3", target: "d2", relation: "uses", weight: 0.78 },
+  { id: "e8", source: "n1", target: "v1", relation: "targets", weight: 0.92 },
+  { id: "e9", source: "n1", target: "v2", relation: "targets", weight: 0.9 },
+  { id: "e10", source: "n2", target: "v3", relation: "targets", weight: 0.85 },
+  { id: "e11", source: "n2", target: "v4", relation: "targets", weight: 0.7 },
+  { id: "e12", source: "v1", target: "a1", relation: "transfers_to", weight: 0.75 },
+  { id: "e13", source: "v2", target: "a2", relation: "transfers_to", weight: 0.72 },
+  { id: "e14", source: "a1", target: "a3", relation: "funnels", weight: 0.93 },
+  { id: "e15", source: "a2", target: "a3", relation: "funnels", weight: 0.91 },
+  { id: "e16", source: "a3", target: "a4", relation: "exfiltrates", weight: 0.96 },
+  { id: "e17", source: "d1", target: "d2", relation: "shared_fp", weight: 0.65 },
+];
+
+export const fraudClusters: FraudCluster[] = [
+  {
+    id: "CL-ALPHA",
+    name: "Compound Alpha — Digital Arrest Syndicate",
+    size: 16,
+    estimatedLossInr: 47_80_00_000,
+    jurisdictions: ["Karnataka", "Maharashtra", "Delhi", "Telangana"],
+    status: "active",
+    leadAgency: "Cyber Crime Unit · Bengaluru",
+    summary:
+      "Industrialised digital arrest operation using spoofed CBI/ED numbers, multi-day video coercion, and a 2-layer mule network with crypto off-ramp. TRINETRA linked 4 victims to shared device fingerprints and VoIP infrastructure.",
+    nodeIds: ["c1", "s1", "s2", "s3", "n1", "n2", "d1", "d2", "a1", "a2", "a3", "a4", "v1", "v2", "v3", "v4"],
+  },
+  {
+    id: "CL-BETA",
+    name: "Indore Counterfeit Circulation Cell",
+    size: 9,
+    estimatedLossInr: 3_20_00_000,
+    jurisdictions: ["Madhya Pradesh", "Rajasthan", "Gujarat"],
+    status: "monitoring",
+    leadAgency: "Economic Offences Wing · Indore",
+    summary:
+      "High-quality Rs 500 fakes defeating manual bank detection. Seizure points form a corridor along NH-52. Serial pattern anomalies shared with currency agent.",
+    nodeIds: [],
+  },
+  {
+    id: "CL-GAMMA",
+    name: "Telegram Investment Funnel",
+    size: 22,
+    estimatedLossInr: 12_40_00_000,
+    jurisdictions: ["Maharashtra", "Goa"],
+    status: "disrupted",
+    leadAgency: "Cyber Cell · Mumbai",
+    summary:
+      "Social-engineered investment channel draining retail investors into mule UPI IDs. Primary handlers identified; 11 accounts frozen.",
+    nodeIds: [],
+  },
+];
