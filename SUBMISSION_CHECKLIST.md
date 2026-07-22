@@ -13,6 +13,7 @@
 |---|-------------|--------|----------|
 | 1 | **Working Prototype** (public GitHub + README) | ✅ Ready | This repo (`trinetra/`) |
 | 2 | **PPT** — Problem, solution, architecture, impact | ✅ Ready | `presentation/TRINETRA_ET_Hackathon_2026.pptx` |
+| 2b | **Detailed project document (PDF)** | ✅ Ready | `docs/TRINETRA_Project_Report_DEDSEC.pdf` |
 | 3 | **Demo Video** 3–4 min walkthrough | ⏳ You record | Record your own walkthrough |
 
 ---

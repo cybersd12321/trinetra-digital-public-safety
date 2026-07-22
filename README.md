@@ -143,7 +143,8 @@ trinetra/
 │       ├── types.ts
 │       └── utils.ts
 ├── docs/
-│   └── ARCHITECTURE.md
+│   ├── ARCHITECTURE.md
+│   └── TRINETRA_Project_Report_DEDSEC.pdf
 ├── presentation/             # Pitch deck (PPT)
 └── README.md
 ```
