@@ -31,7 +31,8 @@ export const liveIncidents: Incident[] = [
     severity: "high",
     status: "investigating",
     amountInr: 2_40_000,
-    summary: "POS scanner flagged Rs 500 batch — microprint + UV feature mismatch.",
+    summary:
+      "POS scanner flagged Rs 500 batch microprint + UV feature mismatch.",
   },
   {
     id: "INC-2026-8829",
@@ -41,7 +42,8 @@ export const liveIncidents: Incident[] = [
     severity: "high",
     status: "open",
     amountInr: 45_00_000,
-    summary: "Graph cluster links 14 accounts across 3 districts; mule funnel active.",
+    summary:
+      "Graph cluster links 14 accounts across 3 districts; mule funnel active.",
   },
   {
     id: "INC-2026-8812",
@@ -51,7 +53,8 @@ export const liveIncidents: Incident[] = [
     severity: "medium",
     status: "closed",
     amountInr: 0,
-    summary: "Citizen Shield blocked fake RBI portal link; NCRB report auto-drafted.",
+    summary:
+      "Citizen Shield blocked fake RBI portal link; NCRB report auto drafted.",
   },
   {
     id: "INC-2026-8804",
@@ -61,7 +64,8 @@ export const liveIncidents: Incident[] = [
     severity: "high",
     status: "investigating",
     amountInr: 8_75_000,
-    summary: "Telegram trading channel → mule accounts mapped to known compound.",
+    summary:
+      "Telegram trading channel → mule accounts mapped to known compound.",
   },
   {
     id: "INC-2026-8791",
@@ -71,7 +75,8 @@ export const liveIncidents: Incident[] = [
     severity: "critical",
     status: "escalated",
     amountInr: 22_00_000,
-    summary: "AI voice clone of relative + Customs spoof. Multi-agency alert issued.",
+    summary:
+      "AI voice clone of relative + Customs spoof. Multi-agency alert issued.",
   },
 ];
 
@@ -86,9 +91,9 @@ export const preventedTrend = [
 ];
 
 export const threatMix = [
-  { name: "Digital Arrest", value: 38, color: "#EF4444" },
-  { name: "UPI / Mule", value: 27, color: "#F97316" },
-  { name: "Counterfeit", value: 14, color: "#F59E0B" },
-  { name: "Phishing / KYC", value: 12, color: "#38BDF8" },
-  { name: "Investment", value: 9, color: "#A78BFA" },
+  { name: "Digital Arrest", value: 38, color: "#ff6b4a" },
+  { name: "UPI / Mule", value: 27, color: "#f97316" },
+  { name: "Counterfeit", value: 14, color: "#e8c47c" },
+  { name: "Phishing / KYC", value: 12, color: "#5eead4" },
+  { name: "Investment", value: 9, color: "#a78bfa" },
 ];

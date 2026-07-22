@@ -1,188 +1,351 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
   Banknote,
   Eye,
   MapPinned,
   MessagesSquare,
   Network,
   ShieldAlert,
-  Sparkles,
   Target,
-  Zap,
 } from "lucide-react";
+import { HeroRadar } from "@/components/landing/HeroRadar";
+import { LiveFeed } from "@/components/landing/LiveFeed";
 
 const modules = [
   {
     href: "/scam-detector",
     icon: ShieldAlert,
-    title: "Digital Arrest Scam Detector",
-    desc: "NLP classifier on call scripts, spoof patterns & coercion templates — flags sessions before fund transfer.",
+    code: "S01",
+    title: "Scam Detector",
+    desc: "Flag digital arrest scripts and spoofed agency calls before any UPI leaves the account.",
+    wide: true,
   },
   {
     href: "/counterfeit",
     icon: Banknote,
-    title: "Counterfeit Currency Agent",
-    desc: "Computer-vision style multi-feature note authentication for banks, POS & field officers.",
+    code: "S02",
+    title: "Currency Agent",
+    desc: "Microprint, UV, thread and print noise scoring for banks and field officers.",
+    wide: false,
   },
   {
     href: "/network",
     icon: Network,
-    title: "Fraud Network Graph",
-    desc: "Map mule accounts, devices, spoofed numbers & compounds into court-ready intelligence packages.",
+    code: "S03",
+    title: "Fraud Graph",
+    desc: "Link compounds, mules, devices and victims into court ready packages.",
+    wide: false,
   },
   {
     href: "/geospatial",
     icon: MapPinned,
-    title: "Geospatial Crime Intel",
-    desc: "Hotspot heatmaps for patrol prioritisation and inter-district intelligence sharing.",
+    code: "S04",
+    title: "Geospatial Intel",
+    desc: "Hotspot ranking for cyber patrol and inter district sharing.",
+    wide: false,
   },
   {
     href: "/citizen",
     icon: MessagesSquare,
-    title: "Citizen Fraud Shield",
-    desc: "Conversational risk assessment with guided NCRB / 1930 reporting — built for mass adoption.",
+    code: "S05",
+    title: "Citizen Shield",
+    desc: "Plain-language risk verdicts with 1930 and NCRB next steps.",
+    wide: false,
   },
   {
     href: "/dashboard",
     icon: Target,
+    code: "S00",
     title: "Command Centre",
-    desc: "Unified LEA dashboard fusing all sensors — threats, losses prevented, live incidents.",
+    desc: "Fused threat picture across every sensor: one ops surface for LEA.",
+    wide: true,
   },
 ];
 
 export default function LandingPage() {
   return (
-    <div className="ops-bg min-h-screen">
-      <header className="border-b border-[var(--border)] bg-[var(--bg)]/70 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
-              <Eye className="h-4.5 w-4.5 text-[#0b1220]" strokeWidth={2.5} />
-            </div>
-            <div>
-              <div className="display font-bold text-white tracking-tight">TRINETRA</div>
-              <div className="text-[9px] uppercase tracking-[0.2em] text-[var(--faint)] -mt-0.5">
-                Three eyes. One truth.
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/citizen" className="btn btn-ghost text-sm hidden sm:inline-flex">
+    <div className="landing">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+
+      <header className="landing-nav">
+        <div className="landing-nav__inner">
+          <Link href="/" className="landing-brand" translate="no">
+            <span className="landing-brand__mark" aria-hidden="true">
+              <Eye className="h-4 w-4" strokeWidth={2.5} />
+            </span>
+            <span className="landing-brand__text">
+              <span className="landing-brand__name">TRINETRA</span>
+              <span className="landing-brand__team">DEDSEC</span>
+            </span>
+          </Link>
+
+          <nav className="landing-nav__links" aria-label="Primary">
+            <a href="#sensors" className="landing-nav__a">
+              Sensors
+            </a>
+            <a href="#doctrine" className="landing-nav__a">
+              Doctrine
+            </a>
+            <Link href="/citizen" className="landing-nav__a hidden sm:inline">
               Citizen Shield
             </Link>
-            <Link href="/dashboard" className="btn btn-primary text-sm">
-              Open Command Centre
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          </nav>
+
+          <Link href="/dashboard" className="landing-cta landing-cta--sm">
+            Open Command Centre
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </Link>
         </div>
       </header>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 pb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-200 text-xs font-medium mb-6">
-          <Sparkles className="h-3.5 w-3.5" />
-          ET AI Hackathon 2026 · Problem Statement 6
-        </div>
+      <main id="main">
+        {/* ── Hero ── */}
+        <section className="landing-hero">
+          <div className="landing-hero__grid">
+            <div className="landing-hero__copy">
+              <p className="landing-kicker">
+                <span className="landing-kicker__dot" aria-hidden="true" />
+                Team DEDSEC / ET AI Hackathon 2026 / PS 6
+              </p>
 
-        <h1 className="display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] max-w-4xl tracking-tight">
-          Stop digital fraud{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-red-400">
-            before
-          </span>{" "}
-          the complaint is filed.
-        </h1>
+              <h1 className="landing-h1">
+                Intelligence at the{" "}
+                <em className="landing-h1__em">point of contact</em>
+                <span className="landing-h1__rest">
+                  , not the point of complaint.
+                </span>
+              </h1>
 
-        <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
-          India lost ₹1,776+ crore to digital arrest scams in nine months. TRINETRA
-          fuses NLP, computer vision, graph AI and geospatial intel so law
-          enforcement, banks and citizens can neutralise threats at the{" "}
-          <em className="text-sky-300 not-italic">point of contact</em> — not the
-          point of complaint.
-        </p>
+              <p className="landing-lede">
+                Digital arrest compounds, high-grade fake notes, and mule
+                networks industrialise faster than FIRs can catch up. TRINETRA
+                fuses NLP, currency vision, graph AI and geospatial intel so
+                citizens, banks and law enforcement act{" "}
+                <strong>before money moves</strong>.
+              </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/dashboard" className="btn btn-primary text-base px-5 py-3">
-            <Zap className="h-4 w-4" />
-            Launch prototype
-          </Link>
-          <Link href="/scam-detector" className="btn btn-secondary text-base px-5 py-3">
-            Try scam detector
-          </Link>
-        </div>
-
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {[
-            { k: "₹18.4 Cr", v: "Demo loss prevented" },
-            { k: "6.4 hrs", v: "Avg lead time before mass victimisation" },
-            { k: "1.8%", v: "Citizen false-positive rate" },
-            { k: "3 eyes", v: "Citizen · Bank · LEA fusion" },
-          ].map((s) => (
-            <div key={s.v} className="card p-4 sm:p-5">
-              <div className="display text-2xl sm:text-3xl font-bold text-amber-300">
-                {s.k}
+              <div className="landing-actions">
+                <Link href="/dashboard" className="landing-cta">
+                  Launch prototype
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/scam-detector"
+                  className="landing-cta landing-cta--ghost"
+                >
+                  Run a scam scan
+                </Link>
               </div>
-              <div className="text-xs sm:text-sm text-[var(--muted)] mt-1">{s.v}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="flex items-end justify-between gap-4 mb-6">
-          <div>
-            <div className="text-xs uppercase tracking-widest text-amber-400/80 mb-2">
-              Platform modules
+              <dl className="landing-strip" aria-label="Key metrics">
+                <div>
+                  <dt>Demo loss prevented</dt>
+                  <dd className="mono">₹18.4&nbsp;Cr</dd>
+                </div>
+                <div>
+                  <dt>Lead time</dt>
+                  <dd className="mono">6.4&nbsp;hrs</dd>
+                </div>
+                <div>
+                  <dt>Citizen FP rate</dt>
+                  <dd className="mono">1.8%</dd>
+                </div>
+                <div>
+                  <dt>Fusion nodes</dt>
+                  <dd className="mono">3 eyes</dd>
+                </div>
+              </dl>
             </div>
-            <h2 className="display text-2xl sm:text-3xl font-bold text-white">
-              One intelligence fabric. Five sensors.
-            </h2>
+
+            <aside className="landing-hero__panel" aria-label="Ops viewport">
+              <div className="landing-panel">
+                <div className="landing-panel__chrome">
+                  <span className="landing-panel__dots" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="mono landing-panel__title">
+                    TRINETRA // OPS VIEWPORT
+                  </span>
+                  <span className="landing-panel__status">
+                    <span className="pulse-dot" aria-hidden="true" />
+                    ONLINE
+                  </span>
+                </div>
+                <div className="landing-panel__body">
+                  <HeroRadar />
+                  <LiveFeed />
+                </div>
+                <div className="landing-panel__foot mono">
+                  <span>CLASS DEMO</span>
+                  <span>FUSION: CITIZEN / BANK / LEA</span>
+                </div>
+              </div>
+            </aside>
           </div>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {modules.map((m) => {
-            const Icon = m.icon;
-            return (
-              <Link
-                key={m.href}
-                href={m.href}
-                className="card card-hover p-5 group block"
-              >
-                <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400 mb-4 group-hover:bg-amber-500/20 transition-colors">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-white text-lg mb-2">{m.title}</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">{m.desc}</p>
-                <div className="mt-4 text-xs font-semibold text-amber-300 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Open module <ArrowRight className="h-3.5 w-3.5" />
-                </div>
+        </section>
+
+        {/* ── Problem band ── */}
+        <section className="landing-problem" aria-labelledby="problem-heading">
+          <div className="landing-wrap">
+            <div className="landing-problem__grid">
+              <div>
+                <p className="landing-kicker landing-kicker--dim">The gap</p>
+                <h2 id="problem-heading" className="landing-h2">
+                  India already has the FIRs.
+                  <br />
+                  <span className="landing-h2__soft">
+                    It needs the lead time.
+                  </span>
+                </h2>
+              </div>
+              <div className="landing-problem__stat" translate="no">
+                <p className="landing-problem__num mono">₹1,776&nbsp;Cr+</p>
+                <p className="landing-problem__cap">
+                  Lost to digital arrest scams in nine months of 2024, often
+                  over multi day video hostage calls. Counterfeit ₹500 notes
+                  still beat routine manual bank checks.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Sensors / modules bento ── */}
+        <section
+          id="sensors"
+          className="landing-sensors"
+          aria-labelledby="sensors-heading"
+        >
+          <div className="landing-wrap">
+            <header className="landing-section-head">
+              <div>
+                <p className="landing-kicker">Platform sensors</p>
+                <h2 id="sensors-heading" className="landing-h2">
+                  Six modules. One fabric.
+                </h2>
+              </div>
+              <p className="landing-section-head__aside">
+                Every sensor is live in this prototype. Click through and run
+                the same flows we&apos;ll demo.
+              </p>
+            </header>
+
+            <div className="landing-bento">
+              {modules.map((m) => {
+                const Icon = m.icon;
+                return (
+                  <Link
+                    key={m.href}
+                    href={m.href}
+                    className={`landing-bento__cell${m.wide ? " landing-bento__cell--wide" : ""}`}
+                  >
+                    <div className="landing-bento__top">
+                      <span className="mono landing-bento__code">{m.code}</span>
+                      <ArrowUpRight
+                        className="landing-bento__arrow"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <span className="landing-bento__icon" aria-hidden="true">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="landing-bento__title">{m.title}</h3>
+                    <p className="landing-bento__desc">{m.desc}</p>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Doctrine ── */}
+        <section
+          id="doctrine"
+          className="landing-doctrine"
+          aria-labelledby="doctrine-heading"
+        >
+          <div className="landing-wrap">
+            <p className="landing-kicker">Doctrine shift</p>
+            <h2 id="doctrine-heading" className="landing-h2 landing-h2--narrow">
+              From reactive casework to predictive neutralisation
+            </h2>
+
+            <ol className="landing-steps">
+              {[
+                {
+                  t: "Ingest",
+                  d: "Call scripts, SMS, note scans, transaction links, citizen reports at the moment of contact.",
+                },
+                {
+                  t: "Score",
+                  d: "Explainable engines surface every signal: coercion language, UV fail, mule hop, hotspot spike.",
+                },
+                {
+                  t: "Fuse",
+                  d: "Graph + geo stitch entities across states so compounds stop looking like isolated FIRs.",
+                },
+                {
+                  t: "Act",
+                  d: "MHA style drafts, 1930 paths, patrol priority, bank FRA handoff while the session is still live.",
+                },
+              ].map((step, i) => (
+                <li key={step.t} className="landing-steps__item">
+                  <span className="mono landing-steps__n" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="landing-steps__t">{step.t}</h3>
+                  <p className="landing-steps__d">{step.d}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ── Close CTA ── */}
+        <section className="landing-close">
+          <div className="landing-wrap landing-close__inner">
+            <div>
+              <p className="landing-kicker">Team DEDSEC</p>
+              <h2 className="landing-h2">
+                Three eyes.
+                <br />
+                One truth.
+              </h2>
+              <p className="landing-close__lede">
+                Working prototype, architecture, pitch deck, and demo ready
+                walkthrough for Phase&nbsp;II. Stop the transfer, not just file
+                the FIR.
+              </p>
+            </div>
+            <div className="landing-close__actions">
+              <Link href="/dashboard" className="landing-cta landing-cta--lg">
+                Enter Command Centre
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="border-t border-[var(--border)] bg-[var(--bg-elevated)]/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <h2 className="display text-xl font-bold text-white">
-              Built for Phase II submission
-            </h2>
-            <p className="text-sm text-[var(--muted)] mt-1 max-w-lg">
-              Working prototype · Architecture · Public GitHub README · Demo-ready
-              walkthrough. Shifting India from reactive FIRs to predictive threat
-              neutralisation.
-            </p>
+              <Link
+                href="/citizen"
+                className="landing-cta landing-cta--ghost landing-cta--lg"
+              >
+                Try Citizen Shield
+              </Link>
+            </div>
           </div>
-          <Link href="/dashboard" className="btn btn-primary shrink-0">
-            Enter Command Centre
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <footer className="border-t border-[var(--border)] py-6 text-center text-xs text-[var(--faint)]">
-        TRINETRA · ET CRP AI Hackathon 2026 · Problem 6: AI for Digital Public Safety
+      <footer className="landing-footer">
+        <div className="landing-wrap landing-footer__inner">
+          <span translate="no">DEDSEC / TRINETRA</span>
+          <span>
+            ET CRP AI Hackathon 2026 / Problem 6 / Digital Public Safety
+          </span>
+        </div>
       </footer>
     </div>
   );

@@ -1,13 +1,16 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Banknote, CheckCircle2, HelpCircle, ScanLine, XCircle } from "lucide-react";
+import {
+  Banknote,
+  CheckCircle2,
+  HelpCircle,
+  ScanLine,
+  XCircle,
+} from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { currencySamples } from "@/lib/data/samples";
-import {
-  analyzeCurrency,
-  NoteScanInput,
-} from "@/lib/engines/currencyDetector";
+import { analyzeCurrency, NoteScanInput } from "@/lib/engines/currencyDetector";
 import { cn } from "@/lib/utils";
 
 const presets: Record<string, NoteScanInput> = {
@@ -24,7 +27,7 @@ export default function CounterfeitPage() {
     result.authenticity === "genuine"
       ? "#10b981"
       : result.authenticity === "suspect"
-        ? "#f59e0b"
+        ? "#e8c47c"
         : "#ef4444";
 
   const toggle = (key: keyof NoteScanInput) => {
@@ -38,14 +41,14 @@ export default function CounterfeitPage() {
   return (
     <AppShell
       title="Counterfeit Currency Agent"
-      subtitle="Multi-feature authentication for banks, POS terminals & field officers"
+      subtitle="Multi feature authentication for banks, POS terminals and field officers"
     >
       <div className="grid lg:grid-cols-2 gap-4">
         <div className="space-y-4">
           <div className="card p-5">
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-semibold text-white flex items-center gap-2">
-                <ScanLine className="h-4 w-4 text-amber-400" />
+                <ScanLine className="h-4 w-4 text-[var(--phosphor)]" />
                 Note scan parameters
               </h2>
             </div>
@@ -94,7 +97,7 @@ export default function CounterfeitPage() {
                   ["watermark", "Watermark present"],
                   ["seeThrough", "See-through register aligned"],
                   ["uvFeature", "UV features correct"],
-                  ["bleedThrough", "Ink bleed-through (bad)"],
+                  ["bleedThrough", "Ink bleed through (bad)"],
                 ] as const
               ).map(([key, label]) => (
                 <button
@@ -106,12 +109,14 @@ export default function CounterfeitPage() {
                     input[key]
                       ? key === "bleedThrough"
                         ? "border-red-500/40 bg-red-500/10 text-red-200"
-                        : "border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
+                        : "border-[var(--success)]/40 bg-[var(--success-dim)] text-[var(--success)]"
                       : "border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--muted)]",
                   )}
                 >
                   <span>{label}</span>
-                  <span className="mono text-xs">{input[key] ? "YES" : "NO"}</span>
+                  <span className="mono text-xs">
+                    {input[key] ? "YES" : "NO"}
+                  </span>
                 </button>
               ))}
             </div>
@@ -131,7 +136,7 @@ export default function CounterfeitPage() {
                       printNoise: Number(e.target.value),
                     }))
                   }
-                  className="w-full mt-2 accent-amber-500"
+                  className="w-full mt-2 accent-[var(--phosphor)]"
                 />
               </label>
               <label className="block text-xs text-[var(--muted)]">
@@ -148,7 +153,7 @@ export default function CounterfeitPage() {
                       edgeSharpness: Number(e.target.value),
                     }))
                   }
-                  className="w-full mt-2 accent-amber-500"
+                  className="w-full mt-2 accent-[var(--phosphor)]"
                 />
               </label>
             </div>
@@ -156,11 +161,13 @@ export default function CounterfeitPage() {
 
           <div className="card p-5 scanline relative overflow-hidden min-h-[160px] flex items-center justify-center bg-gradient-to-br from-[#1a2740] to-[#0c1220]">
             <div className="text-center relative z-10">
-              <Banknote className="h-10 w-10 text-amber-400/80 mx-auto mb-2" />
+              <Banknote className="h-10 w-10 text-[var(--phosphor)]/80 mx-auto mb-2" />
               <div className="display text-3xl font-bold text-white">
                 {input.denomination}
               </div>
-              <div className="mono text-sm text-[var(--muted)] mt-1">{input.serial}</div>
+              <div className="mono text-sm text-[var(--muted)] mt-1">
+                {input.serial}
+              </div>
               <div className="text-[10px] uppercase tracking-widest text-[var(--faint)] mt-3">
                 Simulated optical + UV capture
               </div>
@@ -171,7 +178,10 @@ export default function CounterfeitPage() {
         <div className="space-y-4">
           <div
             className="card p-6 border"
-            style={{ borderColor: `${authColor}44`, background: `${authColor}08` }}
+            style={{
+              borderColor: `${authColor}44`,
+              background: `${authColor}08`,
+            }}
           >
             <div className="text-xs uppercase tracking-wider text-[var(--faint)] mb-2">
               Authenticity verdict
@@ -188,7 +198,9 @@ export default function CounterfeitPage() {
               <span className="display text-3xl font-bold text-white">
                 {result.confidence}%
               </span>
-              <span className="text-sm text-[var(--muted)]">genuine-score consensus</span>
+              <span className="text-sm text-[var(--muted)]">
+                genuine-score consensus
+              </span>
             </div>
             <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
               {result.summary}
@@ -204,20 +216,24 @@ export default function CounterfeitPage() {
                   className="flex gap-3 p-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]"
                 >
                   {f.status === "pass" ? (
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[var(--success)] shrink-0 mt-0.5" />
                   ) : f.status === "fail" ? (
                     <XCircle className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
                   ) : (
-                    <HelpCircle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                    <HelpCircle className="h-4 w-4 text-[var(--phosphor)] shrink-0 mt-0.5" />
                   )}
                   <div className="min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-medium text-white">{f.name}</span>
+                      <span className="text-sm font-medium text-white">
+                        {f.name}
+                      </span>
                       <span className="mono text-[10px] text-[var(--faint)] uppercase">
                         {f.status}
                       </span>
                     </div>
-                    <p className="text-xs text-[var(--muted)] mt-0.5">{f.detail}</p>
+                    <p className="text-xs text-[var(--muted)] mt-0.5">
+                      {f.detail}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -225,11 +241,13 @@ export default function CounterfeitPage() {
           </div>
 
           <div className="card p-5">
-            <h3 className="font-semibold text-white mb-3">Field officer guidance</h3>
+            <h3 className="font-semibold text-white mb-3">
+              Field officer guidance
+            </h3>
             <ul className="space-y-2">
               {result.fieldGuidance.map((g) => (
                 <li key={g} className="text-sm text-[var(--muted)] flex gap-2">
-                  <span className="text-amber-400">▸</span>
+                  <span className="text-[var(--phosphor)]">▸</span>
                   {g}
                 </li>
               ))}

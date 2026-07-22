@@ -11,7 +11,9 @@ const H = 520;
 export function FraudGraph() {
   const laidOut = useMemo(() => layoutGraph(graphNodes, graphEdges, W, H), []);
   const byId = useMemo(() => new Map(laidOut.map((n) => [n.id, n])), [laidOut]);
-  const [selected, setSelected] = useState<GraphNode | null>(laidOut[0] ?? null);
+  const [selected, setSelected] = useState<GraphNode | null>(
+    laidOut[0] ?? null,
+  );
 
   return (
     <div className="grid lg:grid-cols-[1fr_280px] gap-4">
@@ -63,7 +65,8 @@ export function FraudGraph() {
             const b = byId.get(e.target);
             if (!a?.x || !a.y || !b?.x || !b.y) return null;
             const active =
-              selected && (selected.id === e.source || selected.id === e.target);
+              selected &&
+              (selected.id === e.source || selected.id === e.target);
             return (
               <g key={e.id}>
                 <line
@@ -71,7 +74,7 @@ export function FraudGraph() {
                   y1={a.y}
                   x2={b.x}
                   y2={b.y}
-                  stroke={active ? "#f59e0b" : "#334155"}
+                  stroke={active ? "#5eead4" : "#243049"}
                   strokeWidth={active ? 2 : 1 + e.weight}
                   strokeOpacity={active ? 0.9 : 0.45}
                   markerEnd="url(#arrow)"
@@ -80,7 +83,7 @@ export function FraudGraph() {
                   <text
                     x={(a.x + b.x) / 2}
                     y={(a.y + b.y) / 2 - 6}
-                    fill="#fcd34d"
+                    fill="#e8c47c"
                     fontSize="10"
                     textAnchor="middle"
                     className="mono"
@@ -93,7 +96,8 @@ export function FraudGraph() {
           })}
 
           {laidOut.map((n) => {
-            const r = n.type === "compound" ? 22 : n.type === "victim" ? 12 : 15;
+            const r =
+              n.type === "compound" ? 22 : n.type === "victim" ? 12 : 15;
             const isSel = selected?.id === n.id;
             return (
               <g
@@ -107,7 +111,7 @@ export function FraudGraph() {
                     cy={n.y}
                     r={r + 8}
                     fill="none"
-                    stroke="#f59e0b"
+                    stroke="#5eead4"
                     strokeWidth="1.5"
                     strokeOpacity="0.6"
                   />
@@ -118,7 +122,7 @@ export function FraudGraph() {
                   r={r}
                   fill={nodeColor(n.type)}
                   fillOpacity={0.9}
-                  stroke={isSel ? "#fde68a" : "#0b1220"}
+                  stroke={isSel ? "#e8c47c" : "#04060c"}
                   strokeWidth={isSel ? 2 : 1.5}
                 />
                 <text
@@ -142,7 +146,9 @@ export function FraudGraph() {
         </div>
         {selected ? (
           <>
-            <div className="display text-lg font-bold text-white">{selected.label}</div>
+            <div className="display text-lg font-bold text-white">
+              {selected.label}
+            </div>
             <div className="flex items-center gap-2">
               <span
                 className="badge"
@@ -154,7 +160,7 @@ export function FraudGraph() {
               >
                 {selected.type}
               </span>
-              <span className="mono text-sm text-amber-300">
+              <span className="mono text-sm text-[var(--gold)]">
                 risk {selected.risk}
               </span>
             </div>
@@ -166,18 +172,23 @@ export function FraudGraph() {
                 Linked relations
               </div>
               {graphEdges
-                .filter((e) => e.source === selected.id || e.target === selected.id)
+                .filter(
+                  (e) => e.source === selected.id || e.target === selected.id,
+                )
                 .map((e) => {
-                  const otherId = e.source === selected.id ? e.target : e.source;
+                  const otherId =
+                    e.source === selected.id ? e.target : e.source;
                   const other = byId.get(otherId);
                   return (
                     <button
                       key={e.id}
                       type="button"
                       onClick={() => other && setSelected(other)}
-                      className="w-full text-left text-xs p-2 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border)] hover:border-amber-500/40 transition-colors"
+                      className="w-full text-left text-xs p-2 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border)] hover:border-[var(--phosphor)]/40 transition-colors"
                     >
-                      <span className="text-amber-300 mono">{e.relation}</span>
+                      <span className="text-[var(--gold)] mono">
+                        {e.relation}
+                      </span>
                       <span className="text-[var(--muted)]"> → </span>
                       <span className="text-white">{other?.label}</span>
                     </button>
@@ -186,7 +197,9 @@ export function FraudGraph() {
             </div>
           </>
         ) : (
-          <p className="text-sm text-[var(--muted)]">Select a node to inspect.</p>
+          <p className="text-sm text-[var(--muted)]">
+            Select a node to inspect.
+          </p>
         )}
       </div>
     </div>

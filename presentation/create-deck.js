@@ -3,9 +3,9 @@ const path = require("path");
 
 const pres = new pptxgen();
 pres.layout = "LAYOUT_16x9";
-pres.author = "TRINETRA Team";
-pres.title = "TRINETRA — AI Digital Public Safety Intelligence";
-pres.subject = "ET AI Hackathon 2026 · Problem Statement 6";
+pres.author = "Team DEDSEC";
+pres.title = "TRINETRA by DEDSEC — AI Digital Public Safety Intelligence";
+pres.subject = "ET AI Hackathon 2026 · Problem Statement 6 · Team DEDSEC";
 
 const C = {
   bg: "070B14",
@@ -25,7 +25,7 @@ const C = {
 };
 
 function addFooter(slide, page, total = 10) {
-  slide.addText("TRINETRA  ·  ET AI Hackathon 2026  ·  PS-6", {
+  slide.addText("DEDSEC  ·  TRINETRA  ·  ET AI Hackathon 2026  ·  PS-6", {
     x: 0.5,
     y: 5.28,
     w: 7.5,
@@ -67,9 +67,9 @@ function bg(slide) {
     h: 5.625,
     fill: { color: C.amber },
   });
-  s.addText("ET CRP AI HACKATHON 2026  ·  PROBLEM STATEMENT 6", {
+  s.addText("TEAM DEDSEC  ·  ET CRP AI HACKATHON 2026  ·  PROBLEM STATEMENT 6", {
     x: 0.6,
-    y: 1.1,
+    y: 1.0,
     w: 8.5,
     h: 0.35,
     fontSize: 12,
@@ -80,7 +80,7 @@ function bg(slide) {
   });
   s.addText("TRINETRA", {
     x: 0.6,
-    y: 1.6,
+    y: 1.5,
     w: 9,
     h: 0.85,
     fontSize: 54,
@@ -90,9 +90,9 @@ function bg(slide) {
   });
   s.addText("AI Digital Public Safety Intelligence", {
     x: 0.6,
-    y: 2.45,
+    y: 2.35,
     w: 9,
-    h: 0.45,
+    h: 0.4,
     fontSize: 22,
     fontFace: "Calibri",
     color: C.amberSoft,
@@ -101,7 +101,7 @@ function bg(slide) {
     "Defeating counterfeiting, fraud & digital arrest scams —\nintelligence at the point of contact, not the point of complaint.",
     {
       x: 0.6,
-      y: 3.15,
+      y: 2.95,
       w: 8.5,
       h: 0.7,
       fontSize: 15,
@@ -111,12 +111,22 @@ function bg(slide) {
   );
   s.addText("Three eyes. One truth.  ·  Citizen  ·  Banks  ·  Law Enforcement", {
     x: 0.6,
-    y: 4.3,
+    y: 3.85,
     w: 8.5,
     h: 0.35,
     fontSize: 13,
     fontFace: "Calibri",
     color: C.sky,
+  });
+  s.addText("Presented by Team DEDSEC", {
+    x: 0.6,
+    y: 4.4,
+    w: 8.5,
+    h: 0.35,
+    fontSize: 16,
+    fontFace: "Arial",
+    color: C.white,
+    bold: true,
   });
   addFooter(s, 1);
 }
@@ -772,7 +782,7 @@ function bg(slide) {
     bold: true,
   });
   s.addText(
-    "Working prototype  ·  Public GitHub  ·  Architecture  ·  Demo ready\nTRINETRA  ·  ET AI Hackathon 2026  ·  Problem Statement 6",
+    "Working prototype  ·  Public GitHub  ·  Architecture  ·  Demo ready\nTeam DEDSEC  ·  TRINETRA  ·  ET AI Hackathon 2026  ·  PS-6",
     {
       x: 0.6,
       y: 3.5,
@@ -783,7 +793,7 @@ function bg(slide) {
       color: C.muted,
     },
   );
-  s.addText("Thank you", {
+  s.addText("Thank you — Team DEDSEC", {
     x: 0.6,
     y: 4.5,
     w: 9,

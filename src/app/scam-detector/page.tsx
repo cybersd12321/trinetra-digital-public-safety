@@ -1,13 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  Copy,
-  FileWarning,
-  Radar,
-  ShieldAlert,
-  Sparkles,
-} from "lucide-react";
+import { Copy, FileWarning, Radar, ShieldAlert, Sparkles } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { RiskBadge } from "@/components/ui/RiskBadge";
 import { scamSamples } from "@/lib/data/samples";
@@ -30,14 +24,14 @@ export default function ScamDetectorPage() {
   return (
     <AppShell
       title="Digital Arrest Scam Detector"
-      subtitle="Real-time NLP classifier for coercion scripts, spoof signatures & transfer demands"
+      subtitle="Real time NLP classifier for coercion scripts, spoof signatures and transfer demands"
     >
       <div className="grid lg:grid-cols-2 gap-4">
         <div className="space-y-4">
           <div className="card p-5">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold text-white flex items-center gap-2">
-                <Radar className="h-4 w-4 text-amber-400" />
+                <Radar className="h-4 w-4 text-[var(--phosphor)]" />
                 Session / message input
               </h2>
             </div>
@@ -68,17 +62,17 @@ export default function ScamDetectorPage() {
             </div>
           </div>
 
-          <div className="card p-5 border-sky-500/20">
+          <div className="card p-5 border-[var(--phosphor)]/20">
             <h3 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-sky-400" />
+              <Sparkles className="h-4 w-4 text-[var(--phosphor)]" />
               How the agent works
             </h3>
             <ul className="text-sm text-[var(--muted)] space-y-1.5 list-disc pl-4">
               <li>Script template matching for CBI/ED/Customs impersonation</li>
-              <li>Isolation + multi-day video hostage markers</li>
-              <li>Urgent transfer / court-linked account language</li>
+              <li>Isolation plus multi day video hostage markers</li>
+              <li>Urgent transfer / court linked account language</li>
               <li>OTP harvest, KYC spoof domains, investment funnels</li>
-              <li>Auto-draft MHA-style alert for telecom & bank FRA</li>
+              <li>Auto draft MHA style alert for telecom and bank FRA</li>
             </ul>
           </div>
         </div>
@@ -117,17 +111,21 @@ export default function ScamDetectorPage() {
               />
             </div>
 
-            <p className="text-sm text-white leading-relaxed mb-3">{result.verdict}</p>
+            <p className="text-sm text-white leading-relaxed mb-3">
+              {result.verdict}
+            </p>
             <div className="flex flex-wrap gap-3 text-xs text-[var(--muted)]">
               <span>
                 Category:{" "}
-                <strong className="text-amber-200">
+                <strong className="text-[var(--gold)]">
                   {result.category.replace(/_/g, " ")}
                 </strong>
               </span>
               <span>
                 Confidence:{" "}
-                <strong className="text-sky-300">{result.confidence}%</strong>
+                <strong className="text-[var(--phosphor)]">
+                  {result.confidence}%
+                </strong>
               </span>
             </div>
           </div>
@@ -138,7 +136,9 @@ export default function ScamDetectorPage() {
               Signals ({result.signals.length})
             </h3>
             {result.signals.length === 0 ? (
-              <p className="text-sm text-[var(--muted)]">No scam signals fired.</p>
+              <p className="text-sm text-[var(--muted)]">
+                No scam signals fired.
+              </p>
             ) : (
               <div className="space-y-2">
                 {result.signals.map((sig) => (
@@ -147,10 +147,16 @@ export default function ScamDetectorPage() {
                     className="p-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]"
                   >
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className="text-sm font-medium text-white">{sig.label}</span>
-                      <span className="mono text-xs text-amber-300">+{sig.weight}</span>
+                      <span className="text-sm font-medium text-white">
+                        {sig.label}
+                      </span>
+                      <span className="mono text-xs text-[var(--gold)]">
+                        +{sig.weight}
+                      </span>
                     </div>
-                    <p className="text-xs text-[var(--muted)]">{sig.evidence}</p>
+                    <p className="text-xs text-[var(--muted)]">
+                      {sig.evidence}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -158,14 +164,16 @@ export default function ScamDetectorPage() {
           </div>
 
           <div className="card p-5">
-            <h3 className="font-semibold text-white mb-3">Recommended actions</h3>
+            <h3 className="font-semibold text-white mb-3">
+              Recommended actions
+            </h3>
             <ul className="space-y-2">
               {result.recommendedActions.map((a) => (
                 <li
                   key={a}
                   className="text-sm text-[var(--muted)] flex gap-2 leading-relaxed"
                 >
-                  <span className="text-amber-400 shrink-0">▸</span>
+                  <span className="text-[var(--phosphor)] shrink-0">▸</span>
                   {a}
                 </li>
               ))}
@@ -179,7 +187,11 @@ export default function ScamDetectorPage() {
                   <FileWarning className="h-4 w-4 text-red-400" />
                   MHA / Cyber alert draft
                 </h3>
-                <button type="button" className="btn btn-secondary text-xs" onClick={copyAlert}>
+                <button
+                  type="button"
+                  className="btn btn-secondary text-xs"
+                  onClick={copyAlert}
+                >
                   <Copy className="h-3.5 w-3.5" />
                   {copied ? "Copied" : "Copy"}
                 </button>

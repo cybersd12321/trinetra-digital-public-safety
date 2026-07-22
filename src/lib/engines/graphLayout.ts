@@ -36,7 +36,8 @@ export function layoutGraph(
     for (const e of edges) {
       const a = byId.get(e.source);
       const b = byId.get(e.target);
-      if (!a || !b || a.x == null || b.x == null || a.y == null || b.y == null) continue;
+      if (!a || !b || a.x == null || b.x == null || a.y == null || b.y == null)
+        continue;
       const dx = b.x - a.x;
       const dy = b.y - a.y;
       const dist = Math.hypot(dx, dy) || 1;

@@ -47,7 +47,14 @@ export interface CurrencyAnalysis {
 export interface GraphNode {
   id: string;
   label: string;
-  type: "scammer" | "mule" | "victim" | "device" | "account" | "number" | "compound";
+  type:
+    | "scammer"
+    | "mule"
+    | "victim"
+    | "device"
+    | "account"
+    | "number"
+    | "compound";
   risk: number;
   meta?: string;
   x?: number;

@@ -17,15 +17,15 @@ export function formatInr(amount: number): string {
 export function riskColor(level: RiskLevel): string {
   switch (level) {
     case "critical":
-      return "#EF4444";
+      return "#ff6b4a";
     case "high":
-      return "#F97316";
+      return "#f97316";
     case "medium":
-      return "#F59E0B";
+      return "#e8c47c";
     case "low":
-      return "#38BDF8";
+      return "#5eead4";
     case "safe":
-      return "#10B981";
+      return "#34d399";
   }
 }
 

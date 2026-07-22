@@ -38,14 +38,14 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       name: "Microprint analysis",
       ok: input.microprint,
       weight: 18,
-      pass: "Micro-lettering under denomination readable and continuous.",
-      fail: "Microprint broken / absent — common in high-quality fakes.",
+      pass: "Micro lettering under denomination readable and continuous.",
+      fail: "Microprint broken or absent: common in high quality fakes.",
     },
     {
       name: "Security thread",
       ok: input.securityThread,
       weight: 18,
-      pass: "Windowed security thread with correct colour-shift simulation.",
+      pass: "Windowed security thread with correct colour shift simulation.",
       fail: "Thread missing, painted, or incorrect placement.",
     },
     {
@@ -56,18 +56,18 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       fail: "Watermark weak, misaligned, or printed rather than embedded.",
     },
     {
-      name: "See-through register",
+      name: "See through register",
       ok: input.seeThrough,
       weight: 12,
       pass: "Obverse/reverse floral motif aligns when held to light.",
-      fail: "See-through register misaligned beyond tolerance.",
+      fail: "See through register misaligned beyond tolerance.",
     },
     {
       name: "UV feature response",
       ok: input.uvFeature,
       weight: 16,
       pass: "UV fibres and numeral fluorescence within expected band.",
-      fail: "UV response flat or incorrect — critical fail for bank-grade notes.",
+      fail: "UV response flat or incorrect: critical fail for bank grade notes.",
     },
   ];
 
@@ -89,7 +89,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       feature(
         "Print noise / halftone",
         "pass",
-        `Noise index ${(input.printNoise * 100).toFixed(0)}% — within genuine band.`,
+        `Noise index ${(input.printNoise * 100).toFixed(0)}% within genuine band.`,
         12,
       ),
     );
@@ -99,7 +99,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       feature(
         "Print noise / halftone",
         "uncertain",
-        `Elevated noise (${(input.printNoise * 100).toFixed(0)}%) — re-scan under better light.`,
+        `Elevated noise (${(input.printNoise * 100).toFixed(0)}%). Re scan under better light.`,
         6,
       ),
     );
@@ -121,7 +121,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       feature(
         "Edge / intaglio sharpness",
         "pass",
-        `Sharpness ${(input.edgeSharpness * 100).toFixed(0)}% — intaglio-like edges.`,
+        `Sharpness ${(input.edgeSharpness * 100).toFixed(0)}%: intaglio like edges.`,
         10,
       ),
     );
@@ -150,14 +150,19 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
   if (!input.bleedThrough) {
     score += 8;
     features.push(
-      feature("Ink bleed-through", "pass", "No abnormal bleed on reverse scan.", 8),
+      feature(
+        "Ink bleed through",
+        "pass",
+        "No abnormal bleed on reverse scan.",
+        8,
+      ),
     );
   } else {
     features.push(
       feature(
-        "Ink bleed-through",
+        "Ink bleed through",
         "fail",
-        "Bleed-through detected — inconsistent with RBI substrate.",
+        "Bleed through detected: inconsistent with RBI substrate.",
         0,
       ),
     );
@@ -181,7 +186,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
       feature(
         "Serial number pattern",
         "uncertain",
-        `Serial "${input.serial}" format unusual — cross-check FIU / bank list.`,
+        `Serial "${input.serial}" format unusual cross-check FIU / bank list.`,
         2,
       ),
     );
@@ -198,7 +203,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
 
   const summary =
     authenticity === "genuine"
-      ? `${input.denomination} note appears GENUINE — multi-feature consensus ${confidence}%. Suitable for banking operations.`
+      ? `${input.denomination} note appears GENUINE (multi feature consensus ${confidence}%). Suitable for banking operations.`
       : authenticity === "suspect"
         ? `${input.denomination} note is SUSPECT (${confidence}% genuine score, ${failCount} failed checks). Quarantine and re-verify under UV/manual inspection.`
         : `${input.denomination} note classified COUNTERFEIT (${confidence}% genuine score, ${failCount} critical failures). Do not accept; escalate seizure protocol.`;
@@ -211,7 +216,7 @@ export function analyzeCurrency(input: NoteScanInput): CurrencyAnalysis {
         ]
       : authenticity === "suspect"
         ? [
-            "Do not return note to customer yet — hold under dual custody.",
+            "Do not return note to customer yet. Hold under dual custody.",
             "Re-scan under UV lamp and magnifier.",
             "If still uncertain, escalate to Currency Chest / police.",
           ]

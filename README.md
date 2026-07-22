@@ -1,6 +1,6 @@
 # TRINETRA — AI Digital Public Safety Intelligence
 
-**ET CRP AI Hackathon 2026 · Problem Statement 6**  
+**Team DEDSEC** · **ET CRP AI Hackathon 2026 · Problem Statement 6**  
 *AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams*
 
 > **Three eyes. One truth.**  
@@ -167,6 +167,8 @@ trinetra/
 
 ## Team & submission
 
+- **Team:** DEDSEC  
+- **Product:** TRINETRA  
 - **Hackathon:** CRP ET AI Hackathon 2.0 — Economic Times  
 - **Problem:** PS-6 Digital Public Safety  
 - **Deliverables:** Working prototype · Architecture · Presentation · Demo video  

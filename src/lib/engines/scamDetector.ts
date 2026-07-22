@@ -20,7 +20,8 @@ const RULES: PatternRule[] = [
       /\b(cbi|ed\b|enforcement directorate|customs|ncb|narcotics|cyber cell|police station)\b/i,
       /\b(inspector|dsp|sp\b|commissioner|officer)\b/i,
     ],
-    evidence: () => "Message claims affiliation with CBI / ED / Customs / police.",
+    evidence: () =>
+      "Message claims affiliation with CBI / ED / Customs / police.",
   },
   {
     id: "arrest_threat",
@@ -31,7 +32,8 @@ const RULES: PatternRule[] = [
       /\b(arrest warrant|digital arrest|will arrest|being arrested|custody|fir\b|section 420|it act)\b/i,
       /\b(do not (hang|disconnect|speak)|don'?t tell (anyone|family)|remain on (this )?(call|video))\b/i,
     ],
-    evidence: () => "Coercive arrest language and isolation instructions detected.",
+    evidence: () =>
+      "Coercive arrest language and isolation instructions detected.",
   },
   {
     id: "money_laundering_frame",
@@ -41,7 +43,8 @@ const RULES: PatternRule[] = [
     patterns: [
       /\b(money laundering|drug trafficking|terror|parcel in your name|aadhaar.*(misuse|used)|pan.*(misuse|used))\b/i,
     ],
-    evidence: () => "Victim framed for money laundering / drugs / Aadhaar misuse.",
+    evidence: () =>
+      "Victim framed for money laundering / drugs / Aadhaar misuse.",
   },
   {
     id: "urgent_transfer",
@@ -53,7 +56,8 @@ const RULES: PatternRule[] = [
       /\b(court.?linked|verification account|safe account|escrow)\b/i,
       /₹\s?[\d,]+|rs\.?\s?[\d,]+|inr\s?[\d,]+/i,
     ],
-    evidence: () => "Demand for immediate transfer to 'verification' or court-linked account.",
+    evidence: () =>
+      "Demand for immediate transfer to 'verification' or court-linked account.",
   },
   {
     id: "video_isolation",
@@ -63,7 +67,8 @@ const RULES: PatternRule[] = [
     patterns: [
       /\b(video call|keep camera on|do not switch off|48 hours|multi.?day)\b/i,
     ],
-    evidence: () => "Video-call isolation tactics consistent with digital arrest ops.",
+    evidence: () =>
+      "Video-call isolation tactics consistent with digital arrest ops.",
   },
   {
     id: "kyc_urgency",
@@ -74,7 +79,8 @@ const RULES: PatternRule[] = [
       /\b(kyc.*(expir|updat|pending)|account.*(block|frozen|suspend)|upi.*(block|disable))\b/i,
       /\b(rbi|npci|uidai).{0,40}(link|click|verify)\b/i,
     ],
-    evidence: () => "Urgency around KYC / account freeze with external verification link.",
+    evidence: () =>
+      "Urgency around KYC / account freeze with external verification link.",
   },
   {
     id: "suspicious_link",
@@ -86,7 +92,8 @@ const RULES: PatternRule[] = [
       /\b[\w-]+\.(com|in|net|xyz|top|click)\/[^\s]*/i,
       /\b(rbi|sbi|hdfc|icici|paytm|phonepe|gpay)[-_]?(secure|verify|kyc|login)/i,
     ],
-    evidence: () => "Contains link or domain spoofing a trusted Indian institution.",
+    evidence: () =>
+      "Contains link or domain spoofing a trusted Indian institution.",
   },
   {
     id: "otp_harvest",
@@ -139,7 +146,10 @@ const SAFE_MARKERS = [
   /\b(this is an automated alert|no action required)\b/i,
 ];
 
-function dominantCategory(signals: ScamSignal[], rules: PatternRule[]): ScamCategory {
+function dominantCategory(
+  signals: ScamSignal[],
+  rules: PatternRule[],
+): ScamCategory {
   const scores = new Map<ScamCategory, number>();
   for (const s of signals) {
     const rule = rules.find((r) => r.id === s.id);
@@ -180,7 +190,9 @@ export function analyzeScamText(input: string): ScamAnalysis {
       confidence: 0,
       verdict: "No content to analyse.",
       signals: [],
-      recommendedActions: ["Paste a call script, SMS, or chat message to begin."],
+      recommendedActions: [
+        "Paste a call script, SMS, or chat message to begin.",
+      ],
     };
   }
 
@@ -190,7 +202,8 @@ export function analyzeScamText(input: string): ScamAnalysis {
   for (const rule of RULES) {
     const matched = rule.patterns.some((p) => p.test(text));
     if (matched) {
-      const hit = text.match(rule.patterns.find((p) => p.test(text))!)?.[0] || "";
+      const hit =
+        text.match(rule.patterns.find((p) => p.test(text))!)?.[0] || "";
       signals.push({
         id: rule.id,
         label: rule.label,
@@ -206,9 +219,14 @@ export function analyzeScamText(input: string): ScamAnalysis {
     if (s.test(text)) safeDiscount += 12;
   }
 
-  const riskScore = Math.max(0, Math.min(100, Math.round(rawScore - safeDiscount)));
+  const riskScore = Math.max(
+    0,
+    Math.min(100, Math.round(rawScore - safeDiscount)),
+  );
   const riskLevel = scoreToRisk(riskScore);
-  const category = signals.length ? dominantCategory(signals, RULES) : "unknown";
+  const category = signals.length
+    ? dominantCategory(signals, RULES)
+    : "unknown";
   const confidence = Math.min(
     98,
     Math.round(40 + signals.length * 12 + (riskScore > 70 ? 15 : 0)),
@@ -224,13 +242,13 @@ export function analyzeScamText(input: string): ScamAnalysis {
     );
   } else if (riskLevel === "medium") {
     recommendedActions.push(
-      "Treat as suspicious — verify independently via official channels.",
+      "Treat as suspicious. Verify independently via official channels.",
       "Never click embedded links; open bank/RBI apps yourself.",
       "Report if pressure continues.",
     );
   } else if (riskLevel === "low") {
     recommendedActions.push(
-      "Low risk signals only — still avoid sharing credentials.",
+      "Low risk signals only. Still avoid sharing credentials.",
       "Confirm sender via known official contact.",
     );
   } else {
@@ -243,18 +261,18 @@ export function analyzeScamText(input: string): ScamAnalysis {
   let mhaAlertDraft: string | undefined;
   if (riskScore >= 65) {
     mhaAlertDraft = [
-      `MHA / CYBER ALERT DRAFT — ${uid("ALRT").toUpperCase()}`,
+      `MHA / CYBER ALERT DRAFT ${uid("ALRT").toUpperCase()}`,
       `Classification: ${categoryLabel(category)} | Risk: ${riskScore}/100 (${riskLevel})`,
       `Confidence: ${confidence}%`,
       `Signals: ${signals.map((s) => s.label).join("; ")}`,
       `Recommended: Flag session to telecom + bank FRA; escalate to local cyber cell if funds at risk.`,
-      `Evidence package: call metadata, script fingerprint, number spoof score — attach in TRINETRA case file.`,
+      `Evidence package: call metadata, script fingerprint, number spoof score. Attach in TRINETRA case file.`,
     ].join("\n");
   }
 
   const verdict =
     riskScore >= 85
-      ? `CRITICAL: High-confidence ${categoryLabel(category)}. Active coercion pattern — intervene before fund transfer.`
+      ? `CRITICAL: High confidence ${categoryLabel(category)}. Active coercion pattern. Intervene before fund transfer.`
       : riskScore >= 65
         ? `HIGH RISK: Likely ${categoryLabel(category)}. Multiple industrial scam signatures present.`
         : riskScore >= 40

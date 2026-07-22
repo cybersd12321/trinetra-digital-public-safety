@@ -1,7 +1,8 @@
 # TRINETRA Demo Video Script (3–4 minutes)
 
-**Suggested title on screen:** TRINETRA — AI Digital Public Safety Intelligence  
+**Suggested title on screen:** TRINETRA by Team DEDSEC — AI Digital Public Safety Intelligence  
 **Hackathon:** CRP ET AI Hackathon 2026 · Problem Statement 6  
+**Team:** DEDSEC  
 **Length target:** 3:30
 
 ---
@@ -11,7 +12,7 @@
 **Visual:** Landing page hero, scroll stats.
 
 **Narration:**  
-“In 2024, digital arrest scams alone stole over seventeen hundred crore rupees from Indian families — often over multi-day video calls where fraudsters pose as CBI or ED. Banks still struggle with high-quality fake notes. Police get the FIR *after* the money has vanished.
+“We are Team DEDSEC. In 2024, digital arrest scams alone stole over seventeen hundred crore rupees from Indian families — often over multi-day video calls where fraudsters pose as CBI or ED. Banks still struggle with high-quality fake notes. Police get the FIR *after* the money has vanished.
 
 TRINETRA flips that doctrine: intelligence at the *point of contact*, not the point of complaint.”
 
@@ -75,7 +76,7 @@ Geospatial heatmaps rank hotspots so command centres prioritise cyber patrols an
 **Narration:**  
 “TRINETRA turns fragmented complaints into proactive, multi-agency intelligence. Less hostage time. Fewer successful transfers. Faster disruption of industrialised scam compounds.
 
-Three eyes. One truth. Thank you.”
+Three eyes. One truth. This is Team DEDSEC. Thank you.”
 
 ---
 

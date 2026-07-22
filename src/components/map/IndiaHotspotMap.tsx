@@ -108,13 +108,13 @@ export function IndiaHotspotMap() {
                   cy={p.y}
                   r={isSel ? 7 : 5}
                   fill={crimeColor[p.crimeType]}
-                  stroke={isSel ? "#fde68a" : "#0b1220"}
+                  stroke={isSel ? "#e8c47c" : "#04060c"}
                   strokeWidth={isSel ? 2 : 1}
                 />
                 <text
                   x={p.x + 10}
                   y={p.y + 4}
-                  fill={isSel ? "#fde68a" : "#94a3b8"}
+                  fill={isSel ? "#e8c47c" : "#9aa8b8"}
                   fontSize="11"
                   fontWeight={isSel ? 600 : 400}
                 >
@@ -148,7 +148,7 @@ export function IndiaHotspotMap() {
             >
               {selected.crimeType.replace(/_/g, " ")}
             </span>
-            <span className="badge text-amber-300 bg-amber-500/10 border border-amber-500/30">
+            <span className="badge text-[var(--gold)] bg-[var(--gold-dim)] border border-[var(--gold)]/30">
               Intensity {selected.intensity}
             </span>
           </div>
@@ -163,15 +163,17 @@ export function IndiaHotspotMap() {
               </div>
             </div>
             <div className="rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)] p-3">
-              <div className="text-[10px] uppercase text-[var(--faint)]">Trend</div>
+              <div className="text-[10px] uppercase text-[var(--faint)]">
+                Trend
+              </div>
               <div className="flex items-center gap-1.5 mt-1 text-white">
                 <TrendIcon
                   className={
                     selected.trend === "up"
                       ? "text-red-400 h-5 w-5"
                       : selected.trend === "down"
-                        ? "text-emerald-400 h-5 w-5"
-                        : "text-sky-400 h-5 w-5"
+                        ? "text-[var(--success)] h-5 w-5"
+                        : "text-[var(--phosphor)] h-5 w-5"
                   }
                 />
                 <span className="display text-xl font-bold capitalize">
@@ -183,16 +185,21 @@ export function IndiaHotspotMap() {
 
           <div className="mt-5 space-y-2 text-sm text-[var(--muted)]">
             <p>
-              <span className="text-amber-300 font-medium">Patrol priority:</span>{" "}
+              <span className="text-[var(--gold)] font-medium">
+                Patrol priority:
+              </span>{" "}
               {selected.intensity >= 80
-                ? "CRITICAL — surge cyber patrol & bank liaison"
+                ? "CRITICAL: surge cyber patrol and bank liaison"
                 : selected.intensity >= 65
-                  ? "HIGH — increase awareness + ATM/POS checks"
-                  : "MONITOR — maintain standard deployment"}
+                  ? "HIGH: increase awareness plus ATM/POS checks"
+                  : "MONITOR: maintain standard deployment"}
             </p>
             <p>
-              <span className="text-sky-300 font-medium">Inter-district share:</span>{" "}
-              Auto-sync intel package with neighbouring cyber cells via TRINETRA.
+              <span className="text-[var(--phosphor)] font-medium">
+                Inter district share:
+              </span>{" "}
+              Auto sync intel package with neighbouring cyber cells via
+              TRINETRA.
             </p>
           </div>
         </div>
@@ -211,7 +218,7 @@ export function IndiaHotspotMap() {
                   onClick={() => setSelected(h)}
                   className={`w-full flex items-center gap-3 p-2.5 rounded-lg border text-left transition-colors ${
                     selected.id === h.id
-                      ? "border-amber-500/40 bg-amber-500/10"
+                      ? "border-[var(--phosphor)]/40 bg-[var(--gold-dim)]"
                       : "border-[var(--border)] bg-[var(--bg-elevated)] hover:border-[var(--border-strong)]"
                   }`}
                 >
@@ -223,7 +230,9 @@ export function IndiaHotspotMap() {
                     style={{ background: crimeColor[h.crimeType] }}
                   />
                   <span className="flex-1 text-sm text-white">{h.city}</span>
-                  <span className="mono text-xs text-amber-300">{h.intensity}</span>
+                  <span className="mono text-xs text-[var(--gold)]">
+                    {h.intensity}
+                  </span>
                 </button>
               ))}
           </div>
