@@ -83,8 +83,8 @@ Law enforcement does not lack evidence *after* the crime — it lacks **intellig
 
 ```bash
 # Clone
-git clone https://github.com/<your-org>/trinetra.git
-cd trinetra
+git clone https://github.com/cybersd12321/trinetra-digital-public-safety.git
+cd trinetra-digital-public-safety
 
 # Install
 npm install

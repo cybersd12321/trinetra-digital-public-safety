@@ -59,7 +59,7 @@ Typical fields:
 - Project title: **TRINETRA — AI Digital Public Safety Intelligence**
 - Team name: **DEDSEC**
 - Problem statement: **PS-6**
-- GitHub URL: `https://github.com/<you>/trinetra`
+- GitHub URL: `https://github.com/cybersd12321/trinetra-digital-public-safety`
 - PPT: upload `presentation/TRINETRA_ET_Hackathon_2026.pptx`
 - Demo video link: paste unlisted YouTube / Drive URL
 - Short description (copy-paste):
